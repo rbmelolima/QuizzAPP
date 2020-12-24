@@ -44,6 +44,10 @@ class HttpAdapter implements HttpClient {
         throw HttpError.badRequest;
         break;
 
+      case 401:
+        throw HttpError.unauthorized;
+        break;
+
       default:
         throw HttpError.serverError;
         break;
