@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     TextField(
                       decoration: InputDecoration(
-                        labelText: 'Email',
+                        labelText: 'Email',                        
                       ),
                       keyboardType: TextInputType.emailAddress,
                     ),
@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       width: double.maxFinite,
                       child: RaisedButton(
-                        onPressed: () {},
+                        onPressed: null,
                         child: Text('Entrar'.toUpperCase()),
                       ),
                     ),
