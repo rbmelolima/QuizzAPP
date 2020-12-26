@@ -23,27 +23,36 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     StreamBuilder<String>(
-                        stream: presenter.emailErrorStream,
-                        builder: (context, snapshot) {
-                          return TextField(
-                            decoration: InputDecoration(
-                              labelText: 'Email',
-                              errorText: snapshot.data?.isEmpty == true
-                                  ? null
-                                  : snapshot.data,
-                            ),
-                            keyboardType: TextInputType.emailAddress,
-                            onChanged: presenter.validateEmail,
-                          );
-                        }),
+                      stream: presenter.emailErrorStream,
+                      builder: (context, snapshot) {
+                        return TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            errorText: snapshot.data?.isEmpty == true
+                                ? null
+                                : snapshot.data,
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          onChanged: presenter.validateEmail,
+                        );
+                      },
+                    ),
                     Container(height: 16),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Senha',
-                      ),
-                      obscureText: true,
-                      keyboardType: TextInputType.emailAddress,
-                      onChanged: presenter.validatePassword,
+                    StreamBuilder<String>(
+                      stream: presenter.passwordErrorStream,
+                      builder: (context, snapshot) {
+                        return TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Senha',
+                            errorText: snapshot.data?.isEmpty == true
+                                ? null
+                                : snapshot.data,
+                          ),
+                          obscureText: true,
+                          keyboardType: TextInputType.emailAddress,
+                          onChanged: presenter.validatePassword,
+                        );
+                      },
                     ),
                     Container(height: 16),
                     SizedBox(
