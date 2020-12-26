@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import '../components/components.dart';
+import 'package:quizzApp/ui/pages/pages.dart';
+import '../../components/components.dart';
 
 class LoginPage extends StatelessWidget {
+  final LoginPresenter presenter;
+
+  const LoginPage(this.presenter);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,9 +24,10 @@ class LoginPage extends StatelessWidget {
                   children: [
                     TextField(
                       decoration: InputDecoration(
-                        labelText: 'Email',                        
+                        labelText: 'Email',
                       ),
                       keyboardType: TextInputType.emailAddress,
+                      onChanged: presenter.validateEmail,
                     ),
                     Container(height: 16),
                     TextField(
@@ -30,6 +36,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       obscureText: true,
                       keyboardType: TextInputType.emailAddress,
+                      onChanged: presenter.validatePassword,
                     ),
                     Container(height: 16),
                     SizedBox(
