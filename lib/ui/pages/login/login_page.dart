@@ -24,12 +24,19 @@ class LoginPage extends StatelessWidget {
                       children: [
                         CircularProgressIndicator(),
                         SizedBox(height: 10),
-                        Text('Aguarde...', textAlign: TextAlign.center,)
+                        Text(
+                          'Aguarde...',
+                          textAlign: TextAlign.center,
+                        )
                       ],
                     ),
                   ],
                 ),
               );
+            } else {
+              if (Navigator.canPop(context)) {
+                Navigator.of(context).pop();
+              }
             }
           });
 
