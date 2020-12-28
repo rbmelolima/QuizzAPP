@@ -53,25 +53,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: Form(
                       child: Column(
                         children: [
-                          EmailInput(),
-                          Container(height: 16),
-                          StreamBuilder<String>(
-                            stream: widget.presenter.passwordErrorStream,
-                            builder: (context, snapshot) {
-                              return TextField(
-                                decoration: InputDecoration(
-                                  labelText: 'Senha',
-                                  errorText: snapshot.data?.isEmpty == true
-                                      ? null
-                                      : snapshot.data,
-                                ),
-                                obscureText: true,
-                                keyboardType: TextInputType.emailAddress,
-                                onChanged: widget.presenter.validatePassword,
-                              );
-                            },
-                          ),
-                          Container(height: 16),
+                          EmailInput(),                         
+                          PasswordInput(),                          
                           SizedBox(
                             width: double.maxFinite,
                             child: StreamBuilder<bool>(
