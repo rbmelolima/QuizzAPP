@@ -228,12 +228,22 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
 
-  testWidgets('Should present error message if authentication fails', (WidgetTester tester) async {
+  testWidgets('Should present error message if authentication fails',
+      (WidgetTester tester) async {
     await loadPage(tester);
 
     mainErrorController.add('Main error');
-    await tester.pump();   
+    await tester.pump();
 
     expect(find.text('Main error'), findsOneWidget);
+  });
+
+  testWidgets('Should close streams on dispose', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    addTearDown(() {
+      //Before the widget was destroyed
+      verify(presenter.dispose()).called(1);
+    });
   });
 }
