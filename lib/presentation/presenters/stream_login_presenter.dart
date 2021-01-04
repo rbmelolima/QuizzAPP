@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:quizzApp/domain/helpers/helpers.dart';
 import 'dart:async';
 
 import 'package:quizzApp/presentation/protocols/protocols.dart';
@@ -7,10 +8,9 @@ import 'package:quizzApp/domain/usecases/usecases.dart';
 class LoginState {
   String email;
   String password;
-
   String emailError;
   String passwordError;
-
+  String mainError;
   bool isLoading = false;
 
   bool get isFormValid =>
@@ -30,13 +30,12 @@ class StreamLoginPresenter {
 
   Stream<String> get emailErrorStream =>
       _controller.stream.map((state) => state.emailError).distinct();
-
   Stream<String> get passwordErrorStream =>
       _controller.stream.map((state) => state.passwordError).distinct();
-
+  Stream<String> get mainErrorStream =>
+      _controller.stream.map((state) => state.mainError).distinct();
   Stream<bool> get isFormValidStream =>
       _controller.stream.map((state) => state.isFormValid).distinct();
-
   Stream<bool> get isLoadingStream =>
       _controller.stream.map((state) => state.isLoading).distinct();
 
@@ -64,11 +63,15 @@ class StreamLoginPresenter {
     _state.isLoading = true;
     update();
 
-    await authentication.auth(AuthenticationParams(
-      email: _state.email,
-      secret: _state.password,
-    ));
-    
+    try {
+      await authentication.auth(AuthenticationParams(
+        email: _state.email,
+        secret: _state.password,
+      ));
+    } on DomainError catch (error) {
+      _state.mainError = error.description;
+    }
+
     _state.isLoading = false;
     update();
   }
