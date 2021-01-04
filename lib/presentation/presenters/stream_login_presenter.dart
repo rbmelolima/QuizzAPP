@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 import 'dart:async';
 
 import 'package:quizzApp/presentation/protocols/protocols.dart';
+import 'package:quizzApp/domain/usecases/usecases.dart';
 
 class LoginState {
   String email;
@@ -19,6 +20,8 @@ class LoginState {
 
 class StreamLoginPresenter {
   final Validation validation;
+  final Authentication authentication;
+
   final _controller = StreamController<LoginState>.broadcast();
 
   var _state = LoginState();
@@ -32,7 +35,10 @@ class StreamLoginPresenter {
   Stream<bool> get isFormValidStream =>
       _controller.stream.map((state) => state.isFormValid).distinct();
 
-  StreamLoginPresenter({@required this.validation});
+  StreamLoginPresenter({
+    @required this.validation,
+    @required this.authentication,
+  });
 
   void update() => _controller.add(_state);
 
@@ -47,5 +53,12 @@ class StreamLoginPresenter {
     _state.passwordError =
         validation.validate(field: 'password', value: password);
     update();
+  }
+
+  Future<void> auth() async {
+    await authentication.auth(AuthenticationParams(
+      email: _state.email,
+      secret: _state.password,
+    ));
   }
 }
