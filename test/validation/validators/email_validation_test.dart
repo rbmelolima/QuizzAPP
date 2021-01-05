@@ -7,7 +7,11 @@ class EmailValidation implements FieldValidation {
   EmailValidation(this.field);
 
   String validate(String value) {
-    return null;
+    final regex = RegExp("[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+");
+
+    final isValid = value?.isNotEmpty != true || regex.hasMatch(value);
+
+    return isValid ? null : 'Campo inválido';
   }
 }
 
@@ -22,11 +26,15 @@ void main() {
     expect(sut.validate(''), null);
   });
 
-  test('Should return null if email is null', () {    
+  test('Should return null if email is null', () {
     expect(sut.validate(null), null);
   });
 
-   test('Should return null if email is valid', () {    
+  test('Should return null if email is valid', () {
     expect(sut.validate('rbmelolima@gmail.com'), null);
+  });
+
+  test('Should return error if email is invalid', () {
+    expect(sut.validate('invalid_email'), 'Campo inválido');
   });
 }
