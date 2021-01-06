@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           EmailInput(),
                           PasswordInput(),
-                          LoginButton(),                         
+                          LoginButton(),
                           FlatButton.icon(
                             onPressed: () {},
                             icon: Icon(Icons.person),

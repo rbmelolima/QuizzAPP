@@ -1,9 +1,10 @@
-import 'package:meta/meta.dart';
-import 'package:quizzApp/domain/helpers/helpers.dart';
 import 'dart:async';
 
-import 'package:quizzApp/presentation/protocols/protocols.dart';
+import 'package:meta/meta.dart';
+import 'package:quizzApp/domain/helpers/helpers.dart';
 import 'package:quizzApp/domain/usecases/usecases.dart';
+import 'package:quizzApp/presentation/protocols/protocols.dart';
+import 'package:quizzApp/ui/pages/pages.dart';
 
 class LoginState {
   String email;
@@ -20,7 +21,7 @@ class LoginState {
       password != null;
 }
 
-class StreamLoginPresenter {
+class StreamLoginPresenter implements LoginPresenter {
   final Validation validation;
   final Authentication authentication;
 
@@ -69,7 +70,7 @@ class StreamLoginPresenter {
         secret: _state.password,
       ));
     } on DomainError catch (error) {
-      _state.mainError = error.description;
+      _state.mainError = error.description;      
     }
 
     _state.isLoading = false;
