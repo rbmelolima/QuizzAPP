@@ -21,6 +21,12 @@ ThemeData makeAppTheme() {
       border: OutlineInputBorder(borderSide: BorderSide()),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
+          color: Colors.grey[400],
+          width: 1.5,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
           color: primaryColor,
           width: 1.5,
         ),
