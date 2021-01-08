@@ -8,9 +8,7 @@ import 'package:quizzApp/presentation/presenters/presenters.dart';
 import 'package:quizzApp/presentation/protocols/protocols.dart';
 
 class ValidationSpy extends Mock implements Validation {}
-
 class AuthenticationSpy extends Mock implements Authentication {}
-
 class SaveCurrentAccountSpy extends Mock implements SaveCurrentAccount {}
 
 void main() {
@@ -159,7 +157,7 @@ void main() {
     sut.validateEmail(email);
     sut.validatePassword(password);
 
-    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.isLoadingStream, emits(true));
 
     await sut.auth();
   });
