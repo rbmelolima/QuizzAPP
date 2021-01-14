@@ -1,7 +1,5 @@
 # Local Save Current Account Use Case
 
-Check: ✅
-
 > ## Caso de sucesso
 1. ✅ Sistema grava o token de acesso do usuário no Cache de forma segura
 

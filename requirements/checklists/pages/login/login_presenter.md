@@ -1,7 +1,6 @@
 # Login Presenter
 
-Check: ✅ 
-
+> ## Regras
 01. ✅ Chamar Validation ao alterar o email
 02. ✅ Notificar o emailErrorStream com o mesmo erro do Validation, caso retorne erro
 03. ✅ Notificar o emailErrorStream com null, caso o Validation não retorne erro
@@ -22,4 +21,4 @@ Check: ✅
 18. ✅ Gravar o Account no cache em caso de sucesso
 19. ✅ Notificar o mainErrorStream caso o SaveCurrentAccount retorne erro
 20. ✅ Levar o usuário pra tela de Enquetes em caso de sucesso
-21. Levar o usuário pra tela de Criar Conta ao clicar no link de criar conta
+21. ✅ Levar o usuário pra tela de Criar Conta ao clicar no link de criar conta
