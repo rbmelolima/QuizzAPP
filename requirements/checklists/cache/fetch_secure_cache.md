@@ -5,4 +5,4 @@
 2. ✅ Retornar o valor armazenado para aquela chave
 
 > ## Exceção 
-1. Deve repassar a exceção para quem chamou essa classe
+1. ✅ Deve repassar a exceção para quem chamou essa classe
