@@ -43,9 +43,9 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
-  testWidgets('Should call LoadPageAccount on page load', (WidgetTester tester) async {
+  testWidgets('Should call checkAccount on page load', (WidgetTester tester) async {
     await loadPage(tester);
-    verify(presenter.loadCurrentAccount()).called(1);
+    verify(presenter.checkAccount()).called(1);
   });
 
   testWidgets('Should change page', (WidgetTester tester) async {
